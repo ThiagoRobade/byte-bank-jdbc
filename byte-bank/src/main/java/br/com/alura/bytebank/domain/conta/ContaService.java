@@ -59,7 +59,14 @@ public class ContaService {
             throw new RegraDeNegocioException("Valor do deposito deve ser superior a zero!");
         }
 
+        conta.getSaldo().add(valor);
         alterar(conta, valor);
+    }
+
+    public void realizarTransferencia(Integer numeroDaContaOrigem, Integer numeroDaContaDestino,
+                                      BigDecimal valor) {
+        this.realizarSaque(numeroDaContaOrigem, valor);
+        this.realizarDeposito(numeroDaContaDestino, valor);
     }
 
     public void encerrar(Integer numeroDaConta) {
